@@ -1,0 +1,13 @@
+extends layout
+
+block layout-content
+  h1 Your Orders
+
+  ul
+    each order in orders
+      li
+        | #{order.name} - #{order.address}, #{order.city}, #{order.state} - #{order.estimated_delivery_date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+
+  div.NavButtons
+    a(href="/home")
+      button Back to Home
