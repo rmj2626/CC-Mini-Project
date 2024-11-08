@@ -1,16 +1,10 @@
 extends layout
 
 block layout-content
-  div.ThankYouView
-    h1.ThankYouBanner Thank You for Your Order!
-    
-    //- Display the delivery details
-    div.DeliveryDetails
-      p Your order will be delivered to:
-      p Address: #{address}
-      p Estimated Delivery Date: #{estimatedDate}
-
+  div.View
+    h1.Title Thank You!
+    p We appreciate your interest in Grand Theft Auto: Vice City
+    p You will be redirected to the store in a moment...
     div.NavButtons
-      a(href="/home")
-        div.NavButton
-          span Back to Home
+      a(href="/Store").NavButton2
+        span Return to Store

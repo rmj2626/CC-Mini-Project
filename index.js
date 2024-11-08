@@ -141,6 +141,10 @@ app.get("/", (req, res) => {
     res.render("login", { title: "Login" });
 });
 
+app.get("/thank-you", (req, res) => {
+  res.render("thankyou", { title: "Thank You" });
+});
+
 // Home page route (GET)
 app.get("/home", (req, res) => {
   res.render("index", { title: "Home" }); // Render the home page with the title
