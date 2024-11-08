@@ -1,10 +1,11 @@
 @import url("https://fonts.googleapis.com/css?family=Raleway:800|Merriweather+Sans|Share+Tech+Mono");
 
 :root {
-  --ui-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.06),
-    0 4px 5px 0 rgba(0, 0, 0, 0.06), 0 1px 10px 0 rgba(0, 0, 0, 0.08);
-  fill: rgba(0, 0, 0, 0.54);
-  --ui-shadow-border: 1px solid rgba(0, 0, 0, 0.14);
+  --ui-shadow: 0 2px 4px -1px rgba(255, 0, 255, 0.3),
+    0 4px 5px 0 rgba(0, 255, 255, 0.2),
+    0 1px 10px 0 rgba(255, 107, 53, 0.4);
+  --ui-shadow-border: 1px solid rgba(255, 0, 255, 0.2);
+  fill: rgba(255, 255, 255, 0.9);
 }
 
 * {
@@ -26,6 +27,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  background: #120458;
+  color: white;
 }
 
 h1,
@@ -35,7 +38,8 @@ h3 {
   text-transform: uppercase;
   padding: 0;
   margin: 0;
-  color: #2a3747;
+  color: #f7d794;
+  text-shadow: 0 0 10px #ff6b35;
 }
 
 h1 {
@@ -43,7 +47,7 @@ h1 {
 }
 
 a {
-  color: inherit;
+  color: #00ffff;
   text-decoration: none;
   cursor: pointer;
   user-select: none;
@@ -65,6 +69,7 @@ a {
   padding: 20px;
   background-size: cover;
   font-family: "Merriweather Sans", sans-serif;
+  background-color: #120458;
 }
 
 .Banner {
@@ -75,17 +80,18 @@ a {
   width: 100%;
   border-radius: 5px;
   overflow: hidden;
-  background: white;
+  background: rgba(18, 4, 88, 0.9);
   padding: 15px;
   font-family: "Share Tech Mono", monospace;
-  border-bottom: var(--ui-shadow-border);
+  border: 1px solid #ff00ff;
   box-shadow: var(--ui-shadow);
+  color: #f7d794;
 }
 
 .Message {
-  background: white;
+  background: rgba(18, 4, 88, 0.9);
   padding: 30px;
-  border-bottom: var(--ui-shadow-border);
+  border: 1px solid #00ffff;
   box-shadow: var(--ui-shadow);
 }
 
@@ -107,28 +113,27 @@ a {
   align-items: center;
   height: 3rem;
   width: 10rem;
-  background: #fa4141;
+  background: #ff00ff;
   border-radius: 30px;
   font-size: 16px;
   font-weight: bold;
   color: white;
   text-transform: capitalize;
-  border-bottom: var(--ui-shadow-border);
-  box-shadow: var(--ui-shadow);
+  box-shadow: 0 0 15px rgba(255, 0, 255, 0.5);
 }
 
 .WelcomeView {
-  background: url("https://1fabucket.s3.ap-south-1.amazonaws.com/boots.jpg") left bottom;
+  background: url("https://1fabucket.s3.ap-south-1.amazonaws.com/VC.jpg") left bottom;
   background-size: cover;
 }
 
 .UserView {
-  background: url("https://1fabucket.s3.ap-south-1.amazonaws.com/boots2.jpg") left bottom;
+  background: url("https://1fabucket.s3.ap-south-1.amazonaws.com/Tommy.webp") left bottom;
   background-size: cover;
 }
 
 .FGView {
-  background: url("https://1fabucket.s3.ap-south-1.amazonaws.com/FG_ground.jpeg") no-repeat center center; /* Specify your image path */
+  background: url("https://1fabucket.s3.ap-south-1.amazonaws.com/Epic.jpg") no-repeat center center;
   background-size: cover;
   height: 45vh;
   width: 100%;
@@ -140,7 +145,7 @@ a {
 }
 
 .AGView {
-  background: url("https://1fabucket.s3.ap-south-1.amazonaws.com/AG_ground.jpeg") no-repeat center center; /* Specify your image path */
+  background: url("https://1fabucket.s3.ap-south-1.amazonaws.com/Steam.jpg") no-repeat center center;
   background-size: cover;
   height: 45vh;
   width: 100%;
@@ -151,13 +156,40 @@ a {
   text-align: center;
 }
 
-
 .image-containerView {
-  background-color: black;
+  background-color: #120458;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 85vh;
+  position: relative;
+  overflow: hidden;
+  padding: 20px;
+}
+
+.image-containerView::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: inherit;
+  background-size: cover;
+  background-position: center;
+  z-index: 1;
+}
+
+.boot-img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
 }
 
 .image-containerView img {
@@ -165,16 +197,40 @@ a {
   max-height: 100%;
 }
 
-.text {
+/* .text {
   color: white;
   font-size: 18px;
+} */
+
+.Title {
+  position: relative;
+  z-index: 2;
+  margin-bottom: 20px;
 }
 
+.text {
+  color: white;
+  font-size: 24px;
+  text-shadow: 0 0 10px rgba(255, 0, 255, 0.5);
+  background: rgba(18, 4, 88, 0.7);
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: 1px solid #ff00ff;
+}
+
+.NavButtons {
+  position: relative;
+  z-index: 2;
+}
+
+
+
 .LoginView, .SignupView {
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(18, 4, 88, 0.9);
   padding: 20px;
   border-radius: 8px;
   box-shadow: var(--ui-shadow);
+  border: 1px solid #ff00ff;
 }
 
 .FormGroup {
@@ -184,64 +240,58 @@ a {
 .FormGroup label {
   display: block;
   font-size: 14px;
-  color: #2a3747;
+  color: #f7d794;
 }
 
 .FormGroup input {
   width: 100%;
   padding: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid #00ffff;
   border-radius: 4px;
   font-size: 16px;
+  background: rgba(18, 4, 88, 0.8);
+  color: white;
 }
 
 button {
-  background-color: #fa4141;
+  background-color: #ff00ff;
   color: white;
   padding: 10px 15px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
+  box-shadow: 0 0 15px rgba(255, 0, 255, 0.5);
 }
 
 button:hover {
-  background-color: #e63939;
+  background-color: #ff6b35;
 }
 
-.boot-img{
+.boot-img {
   margin-top: -90px;
   margin-bottom: -70px;
 }
 
-.Message2{
-  background: white;
+.Message2 {
+  background: rgba(18, 4, 88, 0.9);
   padding: 30px;
-  border-bottom: var(--ui-shadow-border);
+  border: 1px solid #ff6b35;
   box-shadow: var(--ui-shadow);
-  /* margin-bottom: -55px; */
 }
 
 .Message2 > .Title {
   padding-bottom: 20px;
 }
 
-/* Flex container for Order Form, Product Image, and Estimated Delivery */
 .OrderContainer {
   display: flex;
-  justify-content: space-between; /* Space between the form, product image, and estimated delivery */
-  align-items: flex-start; /* Align items at the top */
+  justify-content: space-between;
+  align-items: flex-start;
 }
 
-/* Styling for the form */
-.Message2 {
-  flex: 1; /* Take up remaining space */
-  margin-right: 20px; /* Space between the form and product image */
-}
-
-/* Styling for the product image section */
 .ProductImage {
-  flex-basis: 20%; /* Take up 20% of the container width */
+  flex-basis: 20%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -255,19 +305,19 @@ button:hover {
   border-radius: 5px;
 }
 
-/* Styling for the estimated delivery section */
 .EstimatedDelivery {
-  flex-basis: 30%; /* Take up 30% of the container width */
-  background-color: #f9f9f9;
+  flex-basis: 30%;
+  background: rgba(18, 4, 88, 0.9);
   padding: 20px;
   box-shadow: var(--ui-shadow);
   border-radius: 5px;
   text-align: center;
+  border: 1px solid #f7d794;
+  color: #f7d794;
 }
 
-/* Map Section styling */
 .MapSection {
-  flex-basis: 20%; /* Take full width */
+  flex-basis: 20%;
   padding: 20px 0;
   display: flex;
   flex-direction: column;
@@ -278,75 +328,44 @@ button:hover {
 .MapSection h3 {
   margin-bottom: 15px;
   font-size: 24px;
-  color: #2a3747;
+  color: #ff6b35;
 }
 
 .MapSection iframe {
   width: 100%;
   max-width: 600px;
   height: 450px;
-  border: none;
+  border: 1px solid #00ffff;
   box-shadow: var(--ui-shadow);
   border-radius: 5px;
 }
 
-/* Flex container for the order form and product image
-.OrderContainer {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  padding: 20px;
-}
-
-/* Styling the product image */
-/* .ProductImage {
-  flex-basis: 30%;
-  padding: 20px;
+.NavButton2 {
   display: flex;
   justify-content: center;
+  align-items: center;
+  height: 3rem;
+  width: 10rem;
+  background: #ff00ff;
+  border-radius: 30px;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  text-transform: capitalize;
+  box-shadow: 0 0 15px rgba(255, 0, 255, 0.5);
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  cursor: pointer;
 }
 
-.ProductImage img {
-  max-width: 100%;
-  height: auto;
-  box-shadow: var(--ui-shadow);
-  border-radius: 5px;
-} */
-
-/* Flex container for Estimated Delivery and Map (stacked vertically) */
-/* .DeliveryMapContainer {
-  flex-basis: 30%;
-  display: flex;
-  flex-direction: column; /* Stack items in a column */
-  /* align-items: center;
-  justify-content: flex-start;
-  padding: 20px;
-}  */
-
-/* Map Section styling */
-/* .MapSection {
-  padding-top: 20px;
-  text-align: center;
+.NavButton2:hover {
+  background-color: #ff6b35;
 }
 
-.MapSection h3 {
-  margin-bottom: 15px;
-  font-size: 24px;
-  color: #2a3747;
+.NavButton2 span {
+  color: white;
+  font-family: "Merriweather Sans", sans-serif;
 }
-
-.MapSection iframe {
-  width: 100%;
-  max-width: 600px;
-  height: 450px;
-  border: none;
-  box-shadow: var(--ui-shadow);
-  border-radius: 5px;
-} */
-
-/* Estimated Delivery section */
-/* .EstimatedDelivery {
-  padding: 10px 0;
-  text-align: center;
-  font-size: 18px;
-} */

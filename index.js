@@ -136,60 +136,6 @@ app.get("/logout", (req, res) => {
   });
 });
 
-
-// Order page route (GET)
-app.get("/order", (req, res) => {
-  res.render("Order", { title: "Order" });
-});
-
-// Order page (POST)
-app.post("/order", (req, res) => {
-  if (!req.session.user) {
-    return res.redirect('/login');  // Redirect if the user is not logged in
-  }
-
-  const userId = req.session.user.id;
-  const { name, email, phone, address1, address2, city, state } = req.body;
-  const address = `${address1}, ${address2 ? address2 + ', ' : ''}${city}, ${state}`;
-
-  const deliveryDate = new Date();
-  deliveryDate.setDate(deliveryDate.getDate() + 7);
-
-  // Insert the order with address details and formatted date
-  const insertOrderQuery = `INSERT INTO orders (user_id, name, email, phone, address, city, state, estimated_delivery_date)
-                            VALUES (?, ?, ?, ?, ?, ?, ?, ?)`;
-  db.query(insertOrderQuery, [userId, name, email, phone, address, city, state, deliveryDate], (err, result) => {
-    if (err) {
-      return res.status(500).send("Database error");
-    }
-
-    // Format the date properly without the time
-    const formattedDate = deliveryDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
-    
-    res.render("thankyou", { title: "Thank You", address, estimatedDate: formattedDate });
-  });
-});
-
-// View user's orders
-app.get("/orders", (req, res) => {
-  if (!req.session.user) {
-    return res.redirect('/login');  // Redirect if the user is not logged in
-  }
-
-  const userId = req.session.user.id;
-
-  const query = `SELECT * FROM orders WHERE user_id = ?`;
-  db.query(query, [userId], (err, results) => {
-    if (err) {
-      return res.status(500).send("Database error");
-    }
-
-    // Pass both the order details and address to the orders.pug file
-    res.render("orders", { title: "Your Orders", orders: results });
-  });
-});
-
-
 // Other routes...
 app.get("/", (req, res) => {
     res.render("login", { title: "Login" });
@@ -204,16 +150,16 @@ app.get("/user", (req, res) => {
     res.render("user", { title: "Profile", userProfile: { nickname: "RMJ" } });
 });
 
-app.get("/ground", (req, res) => {
-    res.render("ground", { title: "Ground Type" });
+app.get("/Store", (req, res) => {
+    res.render("Store", { title: "Store Options" });
 });
 
-app.get("/AG", (req, res) => {
-    res.render("AG", { title: "Artificial Ground" });
+app.get("/SteamVC", (req, res) => {
+    res.render("SteamVC", { title: "Steam Store" });
 });
 
-app.get("/FG", (req, res) => {
-    res.render("FG", { title: "Football Ground" });
+app.get("/EpicVC", (req, res) => {
+    res.render("EpicVC", { title: "Epic Store" });
 });
 
 app.listen(port, '0.0.0.0', () => {
